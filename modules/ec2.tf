@@ -9,7 +9,7 @@ data "aws_vpc" "main" {
     values = ["main-vpc"]
   }
 }
-resource "aws_instance" "windows_ec2" {
+resource "aws_instance" "ec2" {
         ami = data.aws_ami.ami.id
         instance_type = var.instance_type
         associate_public_ip_address = true
@@ -28,7 +28,7 @@ resource "aws_instance" "windows_ec2" {
 
 resource "aws_eip" "eip" {
   vpc = true
-  instance = aws_instance.windows_ec2.id
+  instance = aws_instance.ec2.id
   tags = {
                 Name = "${upper(var.instance_name)}"
         }
