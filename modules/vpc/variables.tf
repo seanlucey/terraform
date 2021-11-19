@@ -1,6 +1,6 @@
-variables "AWS_REGION" {
+variable "AWS_REGION" {
     default = "eu-west-1"
 }
-variables "cidr_block" {
+variable "cidr_block" {
     type = string
 }
