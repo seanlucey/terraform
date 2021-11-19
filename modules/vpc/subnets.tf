@@ -1,7 +1,7 @@
 locals {
-  cidr_block_a  = cidrsubnet(aws_vpc.main.cidr_block, 1, 0)
-  cidr_block_b = cidrsubnet(aws_vpc.main.cidr_block, 1, 1)
-  cidr_block_c = cidrsubnet(aws_vpc.main.cidr_block, 1, 2)
+  cidr_block_a  = cidrsubnet(aws_vpc.main.cidr_block, 2, 0)
+  cidr_block_b = cidrsubnet(aws_vpc.main.cidr_block, 2, 1)
+  cidr_block_c = cidrsubnet(aws_vpc.main.cidr_block, 2, 2)
 }
 
 resource "aws_subnet" "sn_a" {
