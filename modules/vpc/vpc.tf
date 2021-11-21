@@ -1,5 +1,5 @@
 resource "aws_vpc" "vpc" {
-  cidr_block       = "${var.cidr_block}"
+  cidr_block       = cidrsubnet(var.vpc_cidr_block, 0, 0)
   instance_tenancy = "default"
   enable_dns_hostnames = var.vpc_enable_dns_hostnames
 
