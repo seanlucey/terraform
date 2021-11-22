@@ -14,3 +14,7 @@ variable "vpc_name" {
   description = "Name to be used on VPC resource"
   default     = "TEST"
 }
+variable "name" {
+  description = "Name to be used on all resources as prefix"
+  default     = "TEST"
+}
