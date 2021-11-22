@@ -10,3 +10,7 @@ variable "vpc_enable_dns_hostnames" {
   description = "(Optional) A boolean flag to enable/disable DNS hostnames in the VPC. Defaults false."
   default     = false
 }
+variable "name" {
+  description = "Name to be used on all resources as prefix"
+  default     = "TEST"
+}
