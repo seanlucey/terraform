@@ -1,9 +1,4 @@
-provider "aws" {
-  profile = "default"
-  region  = "eu-west-2"
-}
-
-data "aws_vpc" "main" {
+data "aws_vpc" "vpc" {
   filter {
     name = "tag:Name"
     values = ["main-vpc"]
@@ -13,7 +8,7 @@ resource "aws_instance" "ec2" {
         ami = data.aws_ami.ami.id
         instance_type = var.instance_type
         associate_public_ip_address = true
-        availability_zone = var.availability_zone
+        availability_zone = var.instance_availability_zone
         disable_api_termination = true
         key_name = 
         subnet_id = data.aws_subnet.subnet_ew2a.id
