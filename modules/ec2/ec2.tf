@@ -4,14 +4,26 @@ data "aws_vpc" "vpc" {
     values = ["main-vpc"]
   }
 }
+data "aws_ami" "packer_ami" {
+  filter {
+      name = "tag:Name"
+      values = ["packer"]
+  }
+}
+data "aws_subnet" "subnet" {
+  filter {
+      name = "tag:Name"
+      values = ["${var.instance_subnet}"]
+  }
+}
 resource "aws_instance" "ec2" {
-        ami = data.aws_ami.ami.id
+        ami = data.aws_ami.packer_ami.id
         instance_type = var.instance_type
         associate_public_ip_address = true
         availability_zone = var.instance_availability_zone
         disable_api_termination = true
-        key_name = 
-        subnet_id = data.aws_subnet.subnet_ew2a.id
+        key_name = var.instance_key_name
+        subnet_id = data.aws_subnet.subnet.id
         vpc_security_group_ids = [
                                     data.aws_security_group.home_ssh.id,
                                     data.aws_security_group.sql.id
