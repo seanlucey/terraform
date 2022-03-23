@@ -1,20 +1,12 @@
 variable "AWS_REGION" {
-    description = "The region where to deploy this code. Defaults EU-West-1."
+    description = "(Optional, default 'eu-west-1') The region where to deploy this code."
     default = "eu-west-1"
 }
-variable "vpc_cidr_block" {
-  description = "(Required) The CIDR block for the VPC."
-  default     = ""
-}
-variable "vpc_enable_dns_hostnames" {
-  description = "(Optional) A boolean flag to enable/disable DNS hostnames in the VPC. Defaults false."
-  default     = false
-}
-variable "vpc_name" {
-  description = "Name to be used on VPC resource"
-  default     = "TEST"
-}
 variable "name" {
-  description = "Name to be used on all resources as prefix"
-  default     = "TEST"
+  description = "(Required) The name of the vpc"
+  type        = string
+}
+variable "cidr_block" {
+  description = "(Optional) The IPv4 CIDR block for the VPC."
+  type        = string
 }
