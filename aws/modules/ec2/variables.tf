@@ -113,7 +113,11 @@ variable "network_interface" {
   type        = list(map(string))
   default     = []
 }
-
+variable "record_name" {
+  description = "(Optional, default 'null') Name associated with DNS record."
+  type        = string
+  default     = null
+}
 variable "root_block_device" {
   description = "(Optional, default 'empty') Customize details about the root block device of the instance. See Block Devices below for details"
   type        = list(any)
@@ -149,6 +153,11 @@ variable "tenancy" {
   type        = string
   default     = null
 }
+variable "type" {
+  description = "(Optional, default 'null') Type of DNS record."
+  type        = string
+  default     = null
+}
 variable "volume_tags" {
   description = "(Optional, default 'empty') A mapping of tags to assign to the devices created by the instance at launch time."
   type        = map(string)
@@ -173,4 +182,9 @@ variable "timeouts" {
   description = "(Optional, default 'empty') Define maximum timeout for creating, updating, and deleting EC2 instance resources"
   type        = map(string)
   default     = {}
+}
+variable "zone_id" {
+  description = "(Optional, default 'null') Define zone for DNS record"
+  type        = string
+  default     = null
 }
