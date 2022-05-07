@@ -9,14 +9,14 @@ resource "aws_flow_log" "flow_logs" {
 
 resource "aws_cloudwatch_log_group" "flow_logs" {
   count = 1
-  name              = "${var.name}_flow_logs"
+  name              = var.name_flow_logs"
   retention_in_days = 30
   tags              = local.common_tags
 }
 
 resource "aws_iam_role" "flow_logs" {
   count              = 1
-  name               = "${var.name}_flow_logs"
+  name               = var.name_flow_logs"
   assume_role_policy = data.aws_iam_policy_document.vpc_flow_logs_service_principal[0].json
   tags               = local.common_tags
 }
