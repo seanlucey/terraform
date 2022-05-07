@@ -1,17 +1,17 @@
 resource "aws_instance" "ec2" {
   count = local.create ? 1 : 0
   
-  ami                         = "${var.ami}"
-  instance_type               = "${var.instance_type}"
-  associate_public_ip_address = "${var.instance_associate_public_ip}"
-  availability_zone           = "${var.availability_zone}"
+  ami                         = var.ami
+  instance_type               = var.instance_type
+  associate_public_ip_address = var.instance_associate_public_ip
+  availability_zone           = var.availability_zone
   disable_api_termination     = true
-  key_name                    = "${var.key_name}"
-  subnet_id                   = "${var.subnet_id}"
-  vpc_security_group_ids      = "${var.vpc_security_group_ids}"
+  key_name                    = var.key_name
+  subnet_id                   = var.subnet_id
+  vpc_security_group_ids      = var.vpc_security_group_ids
 
-  get_password_data           = "${var.get_password_data}"
-  iam_instance_profile        = "${var.iam_instance_profile}"
+  get_password_data           = var.get_password_data
+  iam_instance_profile        = var.iam_instance_profile
 
   ebs_optimized = var.ebs_optimized
 
