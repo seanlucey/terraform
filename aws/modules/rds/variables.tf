@@ -110,6 +110,16 @@ variable "timezone" {
     type = string  
     default = null
 }
+variable "backup_window" {
+    description = "(Optional, default 'null') Window for backups to be completed."
+    type = string
+    default = null
+}
+varialbe "maintenance_window" {
+    description = "(Optional, default 'null') Windows maintenance is performed at."
+    type = string
+    default = 'null'
+}
 variable "vpc_address" {
     description = "(Optional, default 'null') CIDR block of VPC."
     type = string   
