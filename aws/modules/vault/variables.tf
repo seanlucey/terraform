@@ -5,7 +5,7 @@ variable "vault_token" {
 }
 
 variable "vault_addr" {
-  description = "(Required, default 'https://vault.genesisahc.com') Vault address."
+  description = "(Required, default 'null') Vault address."
   type        = string
-  default     = "https://vault.genesisahc.com"
+  default     = null
 }
