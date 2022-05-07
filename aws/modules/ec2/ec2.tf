@@ -1,4 +1,6 @@
 resource "aws_instance" "ec2" {
+  count = local.create ? 1 : 0
+  
   ami                         = "${var.ami}"
   instance_type               = "${var.instance_type}"
   associate_public_ip_address = "${var.instance_associate_public_ip}"
@@ -116,8 +118,8 @@ resource "aws_instance" "ec2" {
 }
 resource "aws_route53_record" "ec2_privateip" {
   zone_id = var.zone_id
-  name    = var.dns_name
-  type    = var.record_type
+  name    = var.record_name
+  type    = var.type
   ttl     = "300"
   records = [aws_instance.ec2.private_ip]
 }
