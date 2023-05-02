@@ -1,48 +1,19 @@
-resource "aws_route_table" "private" {
-  count  = local.max_subnet_length
-  vpc_id = aws_vpc.main.id
-
-  tags = merge(local.common_tags, {
-    Name = "${var.name}_private_route_table_${count.index}"
-  })
+variable "AWS_REGION" {
+    description = "The region where to deploy this code. Defaults EU-West-1."
+    default = "eu-west-1"
 }
-
-resource "aws_route" "private_nat_gateway" {
-  count                  = local.max_subnet_length
-  route_table_id         = element(aws_route_table.private.*.id, count.index)
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = element(aws_nat_gateway.nat_gw.*.id, count.index)
-
-  timeouts {
-    create = "5m"
-  }
+variable "vpc_cidr_block" {
+  description = "(Required) The CIDR block for the VPC."
+  default     = ""
 }
-
-resource "aws_route_table_association" "private" {
-  count          = length(aws_subnet.private.*)
-  subnet_id      = element(aws_subnet.private.*.id, count.index)
-  route_table_id = element(aws_route_table.private.*.id, count.index)
+variable "vpc_enable_dns_hostnames" {
+  description = "(Optional) A boolean flag to enable/disable DNS hostnames in the VPC. Defaults false."
+  default     = false
 }
-
-resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.main.id
-
-  tags = merge(local.common_tags, {
-    Name = "${var.name}_public_route_table"
-  })
+variable "vpc_name" {
+  description = "Name to be used on VPC resource"
+  default     = "TEST"
 }
-resource "aws_route_table_association" "public" {
-  count          = length(aws_subnet.public.*)
-  subnet_id      = element(aws_subnet.public.*.id, count.index)
-  route_table_id = aws_route_table.public.id
-}
-
-resource "aws_route" "public_internet_gateway" {
-  route_table_id         = aws_route_table.public.id
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.gw.id
-
-  timeouts {
-    create = "5m"
-  }
-}
+variable "name" {
+  description = "Name to be used on all resources as prefix"
+  default     = "TEST"
