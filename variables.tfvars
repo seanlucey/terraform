@@ -18,7 +18,7 @@ serverlessv2_scaling_configuration = {
 }
 
 create_bucket = "true"
-bucket = "testing-foxit"
+bucket = "foxitae466gge"
 versioning = {
   status     = true
   mfa_delete = false
