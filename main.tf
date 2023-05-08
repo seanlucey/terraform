@@ -15,8 +15,8 @@ module "vpc" {
     s3_endpoint_enable = var.s3_endpoint_enable
 }
 
-module "rds" {
-    source = "./modules/rds"
+/*module "rds" {
+   source = "./modules/rds"
 
     name = var.name
     environment = var.environment
@@ -50,4 +50,4 @@ module "s3" {
     bucket = var.bucket
 
     versioning = var.versioning
-}
+}*/
