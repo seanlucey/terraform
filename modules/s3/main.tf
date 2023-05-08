@@ -5,7 +5,7 @@ resource "aws_s3_bucket" "s3_bucket" {
   force_destroy = var.force_destroy
 
   tags = merge(local.common_tags, {
-    Name = "${var.bucket}-${var.environment}-${element(local.zone_names, count.index)}"
+    Name = "testingfoxit123244-${var.environment}-${element(local.zone_names, count.index)}"
   })
 }
 
