@@ -25,7 +25,7 @@ resource "aws_nat_gateway" "nat_gw" {
     connectivity_type   = "public"
 
     tags = merge(local.common_tags, {
-        Name = "$(var.name)-natgw-${count.index}"
+        Name = "${var.name}-natgw-${count.index}"
     })    
 }
 
