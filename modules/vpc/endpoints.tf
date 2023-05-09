@@ -10,7 +10,7 @@ resource "aws_vpc_endpoint" "s3_endpoint" {
 }
 
 resource "aws_vpc_endpoint_route_table_association" "s3_endpoint" {
-    count = length(
+    count = local.max_subnet_length
     
     route_table_id  = element(aws_route_table.private_route_table.*.id, count.index)
     vpc_endpoint_id = aws_vpc_endpoint.s3_endpoint.id
