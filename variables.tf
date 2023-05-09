@@ -36,6 +36,12 @@ variable "environment" {
   }
 }
 
+variable "max_subnet_length" {
+  description = "Maximum number of Subnets. Defaults to 3"
+  type = number
+  default = 3
+}
+
 variable "engine" {
   description = "The name of the database engine to be used for this DB cluster. Defaults to `aurora`. Valid Values: `aurora`, `aurora-mysql`, `aurora-postgresql`"
   type        = string
