@@ -1,9 +1,3 @@
-variable "create_bucket" {
-  description = "Controls if S3 bucket should be created"
-  type        = bool
-  default     = true
-}
-
 variable "environment" {
   description = "(Optional) Determines environment flag to be used."
   type = string
