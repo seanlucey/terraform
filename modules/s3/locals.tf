@@ -3,7 +3,7 @@ locals {
         Terraform             = "true"
         Environment           = var.environment
     }
-    region = data.aws_region.current.name
+    aws_region = data.aws_region.current.name
 }
 
 data "aws_region" "current" {}
