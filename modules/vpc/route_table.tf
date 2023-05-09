@@ -7,7 +7,7 @@ resource "aws_default_route_table" "public_route_table" {
     }
 
     tags = merge(local.common_tags, {
-        Name = "$(var.name)-rtb-public"
+        Name = "${var.name}-rtb-public"
     }) 
 }
 
@@ -25,7 +25,7 @@ resource "aws_route_table" "private_route_table" {
     }
 
     tags = merge(local.common_tags, {
-        Name = "$(var.name)-rtb-private"
+        Name = "${var.name}-rtb-private"
     }) 
 }
 
