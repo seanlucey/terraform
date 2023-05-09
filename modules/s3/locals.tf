@@ -3,10 +3,7 @@ locals {
         Terraform             = "true"
         Environment           = var.environment
     }
-    zone_names        = data.aws_availability_zones.available.names
-    create_bucket = var.create_bucket
+    region = data.aws_region.current.name
 }
 
-data "aws_availability_zones" "available" {
-  state = "available"
-}
+data "aws_region" "current" {}
