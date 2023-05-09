@@ -7,7 +7,7 @@ resource "aws_default_route_table" "public_route_table" {
     }
 
     tags = merge(local.common_tags, {
-        Name = "${var.name}-rtb-public$(count.index)-${element(local.zone_names, count.index)}"
+        Name = "${var.name}-rtb-public"
     }) 
 }
 
