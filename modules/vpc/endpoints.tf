@@ -6,6 +6,10 @@ resource "aws_vpc_endpoint" "s3_endpoint" {
     vpc_endpoint_type = "Gateway"
     service_name      = "com.amazonaws.${data.aws_region.current_region.name}.s3"
     route_table_ids = flatten(["${aws_route_table.private_route_table.*.id}"])
+    
+    tags = merge(local.common_tags, {
+        Name = "${var.name}-vpce-s3"
+    })  
 }
 
 /*resource "aws_vpc_endpoint_route_table_association" "s3_endpoint" {
