@@ -1,17 +1,29 @@
+# Shared variables
 variable "name" {
     description = "(Optional) Name to be used on all resources as prefix. Defaults to 'default'"
     type = string
     default = "default"
 }
 
+variable "environment" {
+  description = "(Optional) Determines environment flag to be used. Default to dev"
+  type = string
+  default = "dev"
+  validation {
+    condition = var.environment == "dev" || var.environment == "prod" || var.environment == "staging"
+    error_message = "Environment name must be either dev, prod or staging"
+  }
+}
+
+# VPC variables
 variable "cidr_block" {
   description = "(Required) The CIDR block for the VPC. Default 10.0.0.0/16"
   type = string
   default     = "10.0.0.0/16"
-  /*validation {
+  validation {
     condition     = can(cidrhost(var.cidr_block, 32))
     error_message = "Must be valid IPv4 CIDR."
-  }*/
+  }
 }
 
 variable "enable_dns_hostnames" {
@@ -26,21 +38,35 @@ variable "enable_dns_support" {
   default = true
 }
 
-variable "environment" {
-  description = "(Optional) Determines environment flag to be used. Default to dev"
-  type = string
-  default = "dev"
-  validation {
-    condition = var.environment == "dev" || var.environment == "prod" || var.environment == "staging"
-    error_message = "Environment name must be either dev, prod or staging"
-  }
-}
-
 variable "max_subnet_length" {
   description = "Maximum number of Subnets. Defaults to 3"
   type = number
   default = 3
 }
+
+# S3
+variable "bucket" {
+  description = "(Optional, Forces new resource) The name of the bucket. If omitted, Terraform will assign a random, unique name."
+  type        = string
+  default     = null
+}
+
+variable "force_destroy" {
+  description = "(Optional) A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are not recoverable. Default to False"
+  type        = bool
+  default     = false
+}
+
+variable "versioning" {
+  description = "(Optional) Map containing versioning configuration."
+  type        = map(string)
+  default     = {}
+}
+
+
+
+
+
 
 variable "engine" {
   description = "The name of the database engine to be used for this DB cluster. Defaults to `aurora`. Valid Values: `aurora`, `aurora-mysql`, `aurora-postgresql`"
@@ -132,26 +158,4 @@ variable "db_parameter_group_name" {
   default     = null
 }
 
-variable "create_bucket" {
-  description = "Controls if S3 bucket should be created"
-  type        = bool
-  default     = true
-}
 
-variable "bucket" {
-  description = "(Optional, Forces new resource) The name of the bucket. If omitted, Terraform will assign a random, unique name."
-  type        = string
-  default     = null
-}
-
-variable "force_destroy" {
-  description = "(Optional, Default:false ) A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are not recoverable."
-  type        = bool
-  default     = false
-}
-
-variable "versioning" {
-  description = "Map containing versioning configuration."
-  type        = map(string)
-  default     = {}
-}
