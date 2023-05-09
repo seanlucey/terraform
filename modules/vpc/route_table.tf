@@ -20,10 +20,6 @@ resource "aws_route_table" "private_route_table" {
         nat_gateway_id = element(aws_nat_gateway.nat_gw.*.id, count.index)
     }
 
-    route {
-        vpc_endpoint_id = element(aws_nat_gateway.nat_gw.*.id, count.index)
-    }
-
     tags = merge(local.common_tags, {
         Name = "${var.name}-rtb-private${count.index}-${element(local.zone_names, count.index)}"
     }) 
