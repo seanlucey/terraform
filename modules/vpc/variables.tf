@@ -23,8 +23,3 @@ variable "name" {
   type = string
 }
 
-variable "s3_endpoint_enable" {
-  description = "(Optional) Determines whether or not an S3 Endpoint will be created."
-  type = bool
-}
-
