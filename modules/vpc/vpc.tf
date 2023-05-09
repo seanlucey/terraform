@@ -25,7 +25,7 @@ resource "aws_nat_gateway" "nat_gw" {
     connectivity_type   = "public"
 
     tags = merge(local.common_tags, {
-        Name = "${var.name}-natgw-${count.index}"
+        Name = "${var.name}-nat-public$(count.index)-${element(local.zone_names, count.index)}"
     })    
 }
 
@@ -36,7 +36,7 @@ resource "aws_subnet" "private" {
     cidr_block          = cidrsubnet(aws_vpc.main.cidr_block, 8, count.index + local.max_subnet_length)
 
     tags = merge(local.common_tags, {
-        Name = "${var.name}_private_subnet_${count.index}_${element(local.zone_names, count.index)}"
+        Name = "${var.name}-private-subnet$(count.index)-${element(local.zone_names, count.index)}"
         Tier = "Private"
     })
 
@@ -52,7 +52,7 @@ resource "aws_subnet" "public" {
     cidr_block          = cidrsubnet(aws_vpc.main.cidr_block, 8, count.index)
 
     tags = merge(local.common_tags, {
-        Name = "${var.name}_public_subnet_${count.index}_${element(local.zone_names, count.index)}"
+        Name = "${var.name}-public-subnet$(count.index)-${element(local.zone_names, count.index)}"
         Tier = "Public"
     })
 }
@@ -61,6 +61,6 @@ resource "aws_internet_gateway" "igw" {
     vpc_id = aws_vpc.main.id
 
     tags = merge(local.common_tags, {
-        Name = "${var.name}_internet_gateway"
+        Name = "${var.name}-igw"
     })
 }
