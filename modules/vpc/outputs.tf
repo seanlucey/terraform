@@ -26,6 +26,6 @@ output "main_route_table_id" {
   value = aws_vpc.main.main_route_table_id
 }
 
-output "s3_endpoint_cidr_blocks" {
-  value = aws_vpc_endpoint.s3_endpoint.*.cidr_blocks
+output "s3_endpoint_id" {
+  value = aws_vpc_endpoint.s3_endpoint.id
 }
