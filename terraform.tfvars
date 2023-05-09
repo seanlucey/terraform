@@ -4,6 +4,8 @@ enable_dns_hostnames = "true"
 enable_dns_support = "true"
 environment = "dev"
 
+bucket = "foxitae466gge"
+
 engine = "aurora-postgresql"
 engine_mode = "provisioned"
 storage_encrypted = "true"
@@ -16,9 +18,4 @@ serverlessv2_scaling_configuration = {
     max_capacity = 10
 }
 
-create_bucket = "true"
-bucket = "foxitae466gge"
-versioning = {
-  status     = true
-  mfa_delete = false
-}
+
