@@ -13,6 +13,14 @@ module "vpc" {
     enable_dns_support = var.enable_dns_support
     environment = var.environment
 }
+    
+module "s3" {
+    source = "./modules/s3"
+
+    environment = var.environment
+    bucket = var.bucket
+    versioning = var.versioning
+}
 
 /*module "rds" {
    source = "./modules/rds"
@@ -39,14 +47,4 @@ module "vpc" {
     serverlessv2_scaling_configuration = var.serverlessv2_scaling_configuration
     vpc_security_group_ids = var.vpc_security_group_ids
     db_parameter_group_name = var.db_parameter_group_name
-}
-
-module "s3" {
-    source = "./modules/s3"
-
-    create_bucket = var.create_bucket
-    environment = var.environment
-    bucket = var.bucket
-
-    versioning = var.versioning
 }*/

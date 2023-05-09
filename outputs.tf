@@ -7,6 +7,6 @@ output "private_subnet_ids" {
   value = module.vpc.private_subnet_ids
 }
 
-output "s3_endpoint_cidr_blocks" {
-  value = module.vpc.s3_endpoint_cidr_blocks
+output "s3_endpoint_id" {
+  value = module.vpc.s3_endpoint_id
 }
