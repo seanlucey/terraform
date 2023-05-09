@@ -36,12 +36,6 @@ variable "environment" {
   }
 }
 
-variable "s3_endpoint_enable" {
-  description = "(Optional) Determines whether or not an S3 Endpoint will be created. Defaults to false"
-  type = bool
-  default = false
-}
-
 variable "engine" {
   description = "The name of the database engine to be used for this DB cluster. Defaults to `aurora`. Valid Values: `aurora`, `aurora-mysql`, `aurora-postgresql`"
   type        = string

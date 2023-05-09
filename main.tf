@@ -12,7 +12,6 @@ module "vpc" {
     enable_dns_hostnames = var.enable_dns_hostnames
     enable_dns_support = var.enable_dns_support
     environment = var.environment
-    s3_endpoint_enable = var.s3_endpoint_enable
 }
 
 /*module "rds" {

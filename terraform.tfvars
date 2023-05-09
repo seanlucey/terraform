@@ -1,9 +1,8 @@
 name = "testing"
-cidr_block = "10.10.1.0/16"
+cidr_block = "10.10.0.0/16"
 enable_dns_hostnames = "true"
 enable_dns_support = "true"
 environment = "dev"
-s3_endpoint_enable = "true"
 
 engine = "aurora-postgresql"
 engine_mode = "provisioned"
