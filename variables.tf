@@ -58,9 +58,12 @@ variable "force_destroy" {
 }
 
 variable "versioning" {
-  description = "(Optional) Map containing versioning configuration."
+  description = "(Optional) Map containing versioning configuration. Defaults to true with MFA disabled."
   type        = map(string)
-  default     = {}
+  default     = {
+        status     = true
+        mfa_delete = false
+    }
 }
 
 
