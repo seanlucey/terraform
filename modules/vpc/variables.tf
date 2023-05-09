@@ -23,3 +23,7 @@ variable "name" {
   type = string
 }
 
+variable "max_subnet_length" {
+  description = "Maximum number of Subnets.
+  type = number
+}
