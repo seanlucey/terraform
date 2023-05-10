@@ -26,6 +26,7 @@ module "s3" {
     replication_configuration = {
         rules = [
           {
+           status = true
            destination = {
             bucket = "arn:aws:s3:::${local.destination_bucket_name}"
             }
