@@ -23,33 +23,31 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
   
   dynamic "rule" {
     for_each = flatten(try([var.replication_configuration["rule"]], [var.replication_configuration["rules"]], []))
-    
+
     content {
       status   = try(tobool(rule.value.status) ? "Enabled" : "Disabled", title(lower(rule.value.status)), "Enabled")
 
       dynamic "destination" {
-       for_each = try(flatten([rule.value.destination]), [])
-       
-       content {   
-        bucket = destination.value.bucket
-       }
-      }
-      
-      dynamic "replication_time" {
-       for_each = try(flatten([destination.value.replication_time]), [])
+        for_each = try(flatten([rule.value.destination]), [])
 
-       content {
-        status = try(tobool(replication_time.value.status) ? "Enabled" : "Disabled", title(lower(replication_time.value.status)), "Disabled")
+        content {
+          bucket        = destination.value.bucket
 
-         dynamic "time" {
-          for_each = try(flatten([replication_time.value.minutes]), [])
+          dynamic "replication_time" {
+            for_each = try(flatten([destination.value.replication_time]), [])
 
-          content {
-            minutes = replication_time.value.minutes
+            content {
+              status = try(tobool(replication_time.value.status) ? "Enabled" : "Disabled", title(lower(replication_time.value.status)), "Disabled")
+
+              dynamic "time" {
+                for_each = try(flatten([replication_time.value.minutes]), [])
+
+                content {
+                  minutes = replication_time.value.minutes
+                }
+              }
+            }
+
           }
-         }
-        }
-       }  
-     }
   depends_on = [aws_s3_bucket_versioning.s3_bucket_versioning]  
 }
