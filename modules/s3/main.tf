@@ -23,21 +23,15 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
   
   dynamic "rule" {
     for_each = flatten(try([var.replication_configuration["rule"]], [var.replication_configuration["rules"]], []))
-    content {
+    
+    content {  
      dynamic "destination" {
-       content {
+       for_each = try(flatten([rule.value.destination]), [])
+       
+       content {   
         bucket = destination.value.bucket
        }
-/*      access_control_translation {
-         owner = "Destination"
-       }
-    
-    dynamic "encryption_configuration" {
-     content {
-              replica_kms_key_id = encryption_configuration.value
-            }
-          }*/
-       }
+      }
     }
   }
   depends_on = [aws_s3_bucket_versioning.s3_bucket_versioning]  
