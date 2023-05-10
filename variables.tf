@@ -65,6 +65,11 @@ variable "versioning" {
     }
 }
 
+variable "create_crr_bucket" {
+  description = "(Optional) Determines whether or not to create Cross Region Replication on bucket. Default to false."
+  type = bool
+  default = false
+}
 
 
 
