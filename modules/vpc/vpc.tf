@@ -33,7 +33,7 @@ resource "aws_subnet" "private" {
     count               = local.max_subnet_length
     vpc_id              = aws_vpc.main.id
     availability_zone   = element(local.zone_names, count.index)
-    cidr_block          = cidrsubnet(aws_vpc.main.cidr_block, 8, count.index + local.max_subnet_length)
+    cidr_block          = cidrsubnet(aws_vpc.main.cidr_block, 4, count.index + local.max_subnet_length)
 
     tags = merge(local.common_tags, {
         Name = "${var.name}-private-subnet${count.index}-${element(local.zone_names, count.index)}"
@@ -49,7 +49,7 @@ resource "aws_subnet" "public" {
     count               = local.max_subnet_length
     vpc_id              = aws_vpc.main.id
     availability_zone   = element(local.zone_names, count.index)
-    cidr_block          = cidrsubnet(aws_vpc.main.cidr_block, 8, count.index)
+    cidr_block          = cidrsubnet(aws_vpc.main.cidr_block, 4, count.index)
 
     tags = merge(local.common_tags, {
         Name = "${var.name}-public-subnet${count.index}-${element(local.zone_names, count.index)}"
