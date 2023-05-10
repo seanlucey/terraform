@@ -34,6 +34,7 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
         bucket = destination.value.bucket
        }
       }
+     }
     }
   }
   depends_on = [aws_s3_bucket_versioning.s3_bucket_versioning]  
