@@ -71,7 +71,11 @@ variable "create_crr_bucket" {
   default = false
 }
 
-
+variable "replication_configuration" {
+  description = "Map containing cross-region replication configuration."
+  type        = any
+  default     = {}
+}
 
 
 
