@@ -19,6 +19,7 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
   count = local.create_crr_bucket ? 1 : 0
   
   bucket = aws_s3_bucket.s3_bucket.id
+  role = var.replication_configuration["role"]
   
   dynamic "rule" {
     for_each = flatten(try([var.replication_configuration["rule"]], [var.replication_configuration["rules"]], []))
