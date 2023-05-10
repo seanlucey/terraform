@@ -30,7 +30,7 @@ module "s3" {
 }
     
 module "replica_bucket" {
-    source = "./module/s3"
+    source = "./modules/s3"
     
     providers = {
         aws = aws.secondary
