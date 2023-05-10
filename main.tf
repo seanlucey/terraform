@@ -26,6 +26,7 @@ module "s3" {
     create_crr_bucket = var.create_crr_bucket
     
     replication_configuration = {
+        role = aws_iam_role.replication.arn
         rules = [
           {
            destination = {
