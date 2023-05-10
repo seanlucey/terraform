@@ -18,7 +18,7 @@ resource "aws_s3_bucket_versioning" "s3_bucket_versioning" {
 resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
   
   bucket = aws_s3_bucket.s3_bucket.id
-  role = aws_iam_role.replication[0].arn
+  role = aws_iam_role.replication.arn
   
   dynamic "rule" {
     for_each = flatten(try([var.replication_configuration["rule"]], [var.replication_configuration["rules"]], []))
