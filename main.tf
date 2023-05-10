@@ -25,7 +25,7 @@ module "s3" {
     create_crr_bucket = var.create_crr_bucket
     
     destination = {
-      bucket = "arn:aws:s3:::${local.destination_bucket_name}"
+      bucket = "arn:aws:s3:::${var.destination_bucket_name}"
     }
 }
     
