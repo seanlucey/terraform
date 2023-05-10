@@ -37,6 +37,7 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
               replica_kms_key_id = encryption_configuration.value
             }
           }*/
+       }
     }
   }
   depends_on = [aws_s3_bucket_versioning.s3_bucket_versioning]  
