@@ -3,8 +3,6 @@ resource "random_id" "random" {
 }
 
 resource "aws_iam_role" "replication" {
-  count = local.create_crr_bucket ? 1 : 0
-
   name = "s3-bucket-replication-${random_id.random.hex}"
 
   assume_role_policy = <<POLICY
