@@ -43,7 +43,7 @@ module "replica_bucket" {
     }
     
     environment = var.environment
-    bucket = var.destination_bucket_name
+    bucket = local.destination_bucket_name
     versioning = var.versioning
 }
 
