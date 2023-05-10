@@ -21,10 +21,11 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
   bucket = aws_s3_bucket.s3_bucket.id
   role = var.replication_configuration
   
-  dynamic "destination" {
-    content {
-      bucket = destination.value.bucket
-    }
+  dynamic "rule" {
+    dynamic "destination" {
+      content {
+        bucket = destination.value.bucket
+      }
 /*     access_control_translation {
         owner = "Destination"
       }
