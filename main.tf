@@ -2,8 +2,8 @@ data "aws_availability_zones" "azs" {}
 
 locals {
     availability_zone  = slice(data.aws_availability_zones.azs.names, 0, 3)
-    secondary_region          = "us-west-1"
-    destination_bucket_name = "replica-s3-bucket-144fr532w3"
+    secondary_region = "us-west-1"
+    destination_bucket_name = "replica-${var.name}"
 }
 
 module "vpc" {
@@ -18,16 +18,15 @@ module "vpc" {
     
 module "s3" {
     source = "./modules/s3"
-
+    
     environment = var.environment
     bucket = var.bucket
     versioning = var.versioning
-    
-    create_crr_bucket = var.create_crr_bucket
-    
+     
     replication_configuration = {
         rules = [
           {
+           status = true
            destination = {
             bucket = "arn:aws:s3:::${local.destination_bucket_name}"
             }
