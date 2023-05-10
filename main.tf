@@ -36,6 +36,7 @@ module "replica_bucket" {
         aws = aws.secondary
     }
     
+    environment = var.environment
     bucket = var.destination_bucket_name
     versioning = var.versioning
 }
