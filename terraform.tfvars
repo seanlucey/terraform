@@ -5,6 +5,7 @@ enable_dns_support = "true"
 environment = "dev"
 
 bucket = "foxitae466gge"
+var.destination_bucket_name = "replica-s3-bucket-123a930"
 
 engine = "aurora-postgresql"
 engine_mode = "provisioned"
