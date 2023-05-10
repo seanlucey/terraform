@@ -29,7 +29,11 @@ module "s3" {
            status = true
            destination = {
             bucket = "arn:aws:s3:::${local.destination_bucket_name}"
+            replication_time = {
+              status  = "Enabled"
+              minutes = 15
             }
+           }
           }
     ]}
 }
