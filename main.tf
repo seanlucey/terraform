@@ -21,6 +21,12 @@ module "s3" {
     environment = var.environment
     bucket = var.bucket
     versioning = var.versioning
+    
+    create_crr_bucket = var.create_crr_bucket
+    
+    destination = {
+      bucket = "arn:aws:s3:::${local.destination_bucket_name}"
+    }
 }
     
 module "replica_bucket" {
