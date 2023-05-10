@@ -3,8 +3,10 @@ cidr_block = "10.10.0.0/16"
 enable_dns_hostnames = "true"
 enable_dns_support = "true"
 environment = "dev"
+create_crr_bucket = "true"
 
 bucket = "foxitae466gge"
+destination_bucket_name = "replica-s3-bucket-123a930"
 
 engine = "aurora-postgresql"
 engine_mode = "provisioned"

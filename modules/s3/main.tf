@@ -14,3 +14,27 @@ resource "aws_s3_bucket_versioning" "s3_bucket_versioning" {
     status = try(var.versioning["enabled"] ? "Enabled" : "Suspended", tobool(var.versioning["status"]) ? "Enabled" : "Suspended", title(lower(var.versioning["status"])))
   }
 }
+
+resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
+  count = local.create_crr_bucket ? 1 : 0
+  
+  bucket = aws_s3_bucket.s3_bucket.id
+  role = aws_iam_role.replication[0].arn
+  
+  dynamic "rule" {
+    for_each = flatten(try([var.replication_configuration["rule"]], [var.replication_configuration["rules"]], []))
+    
+    content {
+      status   = try(tobool(rule.value.status) ? "Enabled" : "Disabled", title(lower(rule.value.status)), "Enabled")
+
+      dynamic "destination" {
+       for_each = try(flatten([rule.value.destination]), [])
+       
+       content {   
+        bucket = destination.value.bucket
+       }
+      }
+    }
+  }
+  depends_on = [aws_s3_bucket_versioning.s3_bucket_versioning]  
+}

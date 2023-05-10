@@ -21,3 +21,14 @@ variable "versioning" {
   default     = {}
 }
 
+variable "create_crr_bucket" {
+  description = "Determines whether or not to create Cross Region Replication on bucket"
+  type = bool
+  default = false
+}
+
+variable "replication_configuration" {
+  description = "Map containing cross-region replication configuration."
+  type        = any
+  default     = {}
+}
