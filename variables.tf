@@ -62,7 +62,6 @@ variable "versioning" {
   type        = map(string)
   default     = {
         status     = true
-        mfa_delete = false
     }
 }
 
