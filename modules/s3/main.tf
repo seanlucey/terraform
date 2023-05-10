@@ -16,7 +16,6 @@ resource "aws_s3_bucket_versioning" "s3_bucket_versioning" {
 }
 
 resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
-  count = local.create_crr_bucket ? 1 : 0
   
   bucket = aws_s3_bucket.s3_bucket.id
   role = aws_iam_role.replication[0].arn
