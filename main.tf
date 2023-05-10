@@ -19,8 +19,6 @@ module "vpc" {
 module "s3" {
     source = "./modules/s3"
     
-    create_crr_bucket = var.create_crr_bucket
-
     environment = var.environment
     bucket = var.bucket
     versioning = var.versioning
