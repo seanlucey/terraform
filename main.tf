@@ -29,9 +29,9 @@ module "s3" {
           {
            destination = {
             bucket = "arn:aws:s3:::${var.destination_bucket_name}"
+            }
           }
-        }
-    }
+    ]}
 }
     
 module "replica_bucket" {
