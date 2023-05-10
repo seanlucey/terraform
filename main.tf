@@ -2,6 +2,7 @@ data "aws_availability_zones" "azs" {}
 
 locals {
     availability_zone  = slice(data.aws_availability_zones.azs.names, 0, 3)
+    replica_region          = "us-west-1"
 }
 
 module "vpc" {
@@ -19,6 +20,17 @@ module "s3" {
 
     environment = var.environment
     bucket = var.bucket
+    versioning = var.versioning
+}
+    
+module "replica_bucket" {
+    source = "./module/s3"
+    
+    providers = {
+        aws = aws.secondary
+    }
+    
+    bucket = var.destination_bucket_name
     versioning = var.versioning
 }
 
