@@ -36,6 +36,10 @@ module "s3" {
               status  = "Enabled"
               minutes = 15
              }
+            metrics = {
+              status  = "Enabled"
+              minutes = 15
+             }
             } 
           }
     ]}
