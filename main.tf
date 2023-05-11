@@ -27,8 +27,8 @@ module "s3" {
         rules = [
           {
            id = "crr-rule"
-           status = "Enabled"
-
+           status = "Enabled" 
+           delete_marker_replication = true
            destination = {
             bucket = "arn:aws:s3:::${local.destination_bucket_name}"
             } 
