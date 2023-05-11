@@ -25,6 +25,7 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
     for_each = flatten(try([var.replication_configuration["rule"]], [var.replication_configuration["rules"]], []))
     content {
       id = try(rule.value.id, null)
+      priority = try(rule.value.priority, null)
       status = try(tobool(rule.value.status) ? "Enabled" : "Disabled", title(lower(rule.value.status)), "Enabled")
 
       dynamic "destination" {
