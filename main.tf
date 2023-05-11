@@ -45,16 +45,16 @@ module "s3" {
     
     cors_rule = [
      {
-      allowed_methods = ["PUT", "POST"]
-      allowed_origins = ["https://modules.tf", "https://terraform-aws-modules.modules.tf"]
-      allowed_headers = ["*"]
-      expose_headers  = ["ETag"]
+      allowed_methods = ["GET"]
+      allowed_origins = ["https://alpha.activedraft.com", "https://blazorapp.alpha.activedraft.com"]
+      allowed_headers = ["Connection", "Etag", "Retry-After", "X-Amz-Bucket-Region", "Expires", "Content-Range", "Content-Language", "Date", "Cache-Control", "Last-Modified", "Content-Encoding", "Content-Disposition", "Accept-Ranges", "Server", "Content-Type", "Content-Length"]
+      expose_headers  = ["*"]
       max_age_seconds = 3000
       }, {
-      allowed_methods = ["PUT"]
-      allowed_origins = ["https://example.com"]
+      allowed_methods = ["POST", "HEAD", "DELETE", "PUT"]
+      allowed_origins = ["https://alpha.activedraft.com", "https://blazorapp.alpha.activedraft.com"]
       allowed_headers = ["*"]
-      expose_headers  = ["ETag"]
+      expose_headers  = []
       max_age_seconds = 3000
      }
    ]
