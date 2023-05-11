@@ -27,22 +27,11 @@ module "s3" {
         rules = [
           {
            id = "crr-rule"
-           status = true
-           priority = 2
+           status = "Enabled"
+
            destination = {
             bucket = "arn:aws:s3:::${local.destination_bucket_name}"
-            }
-              
-           replication_time = {
-            status  = "Enabled"
-            minutes = 15
-            }
-           
-           metrics = {
-            status = "Enabled"
-            minutes = 15
-           }
-              
+            } 
           }
     ]}
 }
