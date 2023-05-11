@@ -71,6 +71,12 @@ variable "replication_configuration" {
   default     = {}
 }
 
+variable "enable_crr_bucket" {
+  description = "Determines whether to not to create s3 bucket for Cross Region Replication. Defaults to false."
+  type        = bool
+  default     = false
+}
+
 
 
 variable "engine" {
