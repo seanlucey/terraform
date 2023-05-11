@@ -18,7 +18,9 @@ variable "force_destroy" {
 variable "versioning" {
   description = "Map containing versioning configuration."
   type        = map(string)
-  default     = {}
+  default     = {
+    enabled = true
+  }
 }
 
 variable "replication_configuration" {
