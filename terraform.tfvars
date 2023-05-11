@@ -1,10 +1,3 @@
-cidr_block = "10.10.0.0/16"
-enable_dns_hostnames = "true"
-enable_dns_support = "true"
-create_crr_bucket = "true"
-
-bucket = "foxitae466gge"
-
 engine = "aurora-postgresql"
 engine_mode = "provisioned"
 storage_encrypted = "true"
@@ -16,5 +9,3 @@ serverlessv2_scaling_configuration = {
     min_capacity = 2
     max_capacity = 10
 }
-
-
