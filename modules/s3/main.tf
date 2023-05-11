@@ -48,6 +48,23 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
             }
 
           }
+
+          dynamic "metrics" {
+            for_each = try(flatten([destination.value.metrics]), [])
+            content {
+              status = try(tobool(metrics.value.status) ? "Enabled" : "Disabled", title(lower(metrics.value.status)), "Disabled")
+
+              dynamic "event_threshold" {
+                for_each = try(flatten([metrics.value.minutes]), [])
+
+                content {
+                  minutes = metrics.value.minutes
+                }
+              }
+            }
+          }
+        }
+      }
         }
       }
 
