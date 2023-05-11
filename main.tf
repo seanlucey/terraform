@@ -21,7 +21,6 @@ module "s3" {
     
     environment = var.environment
     bucket = var.bucket
-    versioning = var.versioning
      
     replication_configuration = {
         rules = [
@@ -54,7 +53,6 @@ module "replica_bucket" {
     
     environment = var.environment
     bucket = "replica-${var.bucket}"
-    versioning = var.versioning
 }
 
 /*module "rds" {
