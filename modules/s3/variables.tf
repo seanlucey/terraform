@@ -28,3 +28,9 @@ variable "replication_configuration" {
   type        = any
   default     = {}
 }
+
+variable "cors_rule" {
+  description = "List of maps containing rules for Cross-Origin Resource Sharing."
+  type        = any
+  default     = []
+}
