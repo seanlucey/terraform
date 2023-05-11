@@ -24,9 +24,9 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
   dynamic "rule" {
     for_each = flatten(try([var.replication_configuration["rule"]], [var.replication_configuration["rules"]], []))
     content {
-      id = try(rule.value.id, null)
+      id       = try(rule.value.id, null)
       priority = try(rule.value.priority, null)
-      status = try(tobool(rule.value.status) ? "Enabled" : "Disabled", title(lower(rule.value.status)), "Enabled")
+      status   = try(tobool(rule.value.status) ? "Enabled" : "Disabled", title(lower(rule.value.status)), "Enabled")
 
       dynamic "destination" {
         for_each = try(flatten([rule.value.destination]), [])
@@ -40,7 +40,6 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
 
               dynamic "time" {
                 for_each = try(flatten([replication_time.value.minutes]), [])
-
                 content {
                   minutes = replication_time.value.minutes
                 }
@@ -56,7 +55,6 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
 
               dynamic "event_threshold" {
                 for_each = try(flatten([metrics.value.minutes]), [])
-
                 content {
                   minutes = metrics.value.minutes
                 }
@@ -65,11 +63,8 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
           }
         }
       }
-        }
-      }
 
     }
   }
-
-  depends_on = [aws_s3_bucket_versioning.s3_bucket_versioning]
+  depends_on = [aws_s3_bucket_versioning.this]
 }
