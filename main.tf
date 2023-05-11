@@ -3,7 +3,7 @@ data "aws_availability_zones" "azs" {}
 locals {
     availability_zone  = slice(data.aws_availability_zones.azs.names, 0, 3)
     secondary_region = "us-west-1"
-    destination_bucket_name = "replica-${var.bucket}"
+    destination_bucket_name = "replica-${var.bucket}-${var.environment}-${local.secondary_region}"
 }
 
 module "vpc" {
@@ -47,7 +47,7 @@ module "replica_bucket" {
     }
     
     environment = var.environment
-    bucket = local.destination_bucket_name
+    bucket = "replica-${var.bucket}"
     versioning = var.versioning
 }
 
