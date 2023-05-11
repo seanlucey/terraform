@@ -1,4 +1,4 @@
-resource "aws_s3_bucket_cors_configuration" "s3_cors" {
+resource "aws_s3_bucket_cors_configuration" "s3_bucket_cors" {
   count = length(local.cors_rules) > 0 ? 1 : 0
 
   bucket = aws_s3_bucket.s3_bucket.id
