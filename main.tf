@@ -48,7 +48,7 @@ module "s3" {
       allowed_methods = ["GET"]
       allowed_origins = ["https://alpha.activedraft.com", "https://blazorapp.alpha.activedraft.com"]
       allowed_headers = ["*"]
-      expose_headers  = [""Connection", "Etag", "Retry-After", "X-Amz-Bucket-Region", "Expires", "Content-Range", "Content-Language", "Date", "Cache-Control", "Last-Modified", "Content-Encoding", "Content-Disposition", "Accept-Ranges", "Server", "Content-Type", "Content-Length""]
+      expose_headers  = ["Connection", "Etag", "Retry-After", "X-Amz-Bucket-Region", "Expires", "Content-Range", "Content-Language", "Date", "Cache-Control", "Last-Modified", "Content-Encoding", "Content-Disposition", "Accept-Ranges", "Server", "Content-Type", "Content-Length"]
       max_age_seconds = 3000
       }, {
       allowed_methods = ["POST", "HEAD", "DELETE", "PUT"]
