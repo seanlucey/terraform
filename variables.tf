@@ -61,7 +61,7 @@ variable "versioning" {
   description = "(Optional) Map containing versioning configuration. Defaults to true with MFA disabled."
   type        = map(string)
   default     = {
-        status     = true
+        enabled = true
     }
 }
 
