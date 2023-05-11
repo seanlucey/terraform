@@ -53,7 +53,7 @@ module "s3" {
       }, {
       allowed_methods = ["POST", "HEAD", "DELETE", "PUT"]
       allowed_origins = ["https://alpha.activedraft.com", "https://blazorapp.alpha.activedraft.com"]
-      allowed_headers = ["*"]
+      allowed_headers = [""]
       expose_headers  = []
       max_age_seconds = 3000
      }
