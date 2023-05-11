@@ -11,6 +11,13 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
       priority = try(rule.value.priority, null)
       status   = try(tobool(rule.value.status) ? "Enabled" : "Disabled", title(lower(rule.value.status)), "Enabled")
 
+      dynamic "delete_marker_replication" {
+        for_each = flatten(try([rule.value.delete_marker_replication_status], [rule.value.delete_marker_replication], []))
+        content {        
+          status = try(tobool(delete_marker_replication.value) ? "Enabled" : "Disabled", title(lower(delete_marker_replication.value)))
+        }
+      }
+      
       dynamic "destination" {
         for_each = try(flatten([rule.value.destination]), [])
         content {
