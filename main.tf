@@ -42,6 +42,22 @@ module "s3" {
             } 
           }
     ]}
+    
+    cors_rule = [
+     {
+      allowed_methods = ["PUT", "POST"]
+      allowed_origins = ["https://modules.tf", "https://terraform-aws-modules.modules.tf"]
+      allowed_headers = ["*"]
+      expose_headers  = ["ETag"]
+      max_age_seconds = 3000
+      }, {
+      allowed_methods = ["PUT"]
+      allowed_origins = ["https://example.com"]
+      allowed_headers = ["*"]
+      expose_headers  = ["ETag"]
+      max_age_seconds = 3000
+     }
+   ]
 }
     
 module "replica_bucket" {
