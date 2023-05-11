@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "s3_bucket" {
-  bucket = "${var.bucket}-${var.environment}-${local.aws_region}"
+  bucket = "lower(${var.bucket}-${var.environment}-${local.aws_region})"
   force_destroy = var.force_destroy
 
   tags = merge(local.common_tags, {
@@ -33,8 +33,26 @@ resource "aws_s3_bucket_replication_configuration" "s3_bucket_crr" {
        content {   
         bucket = destination.value.bucket
        }
+        
       }
      }
+     dynamic "replication_time" {
+      for_each = try(flatten([destination.value.replication_time]), [])
+
+      content {
+        status = try(tobool(replication_time.value.status) ? "Enabled" : "Disabled", title(lower(replication_time.value.status)), "Disabled")
+
+        dynamic "time" {
+          for_each = try(flatten([replication_time.value.minutes]), [])
+
+          content {
+            minutes = replication_time.value.minutes
+          }
+        }
+      }
     }
+    }
+
+  }
   depends_on = [aws_s3_bucket_versioning.s3_bucket_versioning]  
 }
