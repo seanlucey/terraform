@@ -28,6 +28,7 @@ module "s3" {
           {
            id = "crr-rule"
            status = true
+           priority = 2
            destination = {
             bucket = "arn:aws:s3:::${local.destination_bucket_name}"
             }
